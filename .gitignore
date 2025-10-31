@@ -1,0 +1,38 @@
+# ========== 通用 Visual Studio 忽略规则 ==========
+.vs/
+*.user
+*.suo
+*.userosscache
+*.userprefs
+*.rsuser
+*.pdb
+*.log
+*.tmp
+*.cache
+*.dbmdl
+
+# 忽略构建输出目录
+[Bb]in/
+[Oo]bj/
+
+# 忽略数据库文件（默认）
+*.mdf
+*.ldf
+
+# ========== 反忽略规则：保留指定数据库文件 ==========
+!Hospital_Management_System/
+!Hospital_Management_System/bin/
+!Hospital_Management_System/bin/Debug/
+!Hospital_Management_System/bin/Debug/hospital_schema.mdf
+!Hospital_Management_System/bin/Debug/hospital_schema_log.ldf
+
+# 其他常见忽略项
+*.dll
+*.exe
+*.vsix
+*.zip
+*.7z
+*.rar
+*.bak
+*.nupkg
+*.snupkg
