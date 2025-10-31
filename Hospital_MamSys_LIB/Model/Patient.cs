@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Hospital_MamSys_LIB.Model
+namespace Hospital_MamSys_LIB.Models
 {
-    internal class Patient
+    public class Patient
     {
+        public int PatientID { get; set; }
+        public string Name { get; set; }
+        public DateTime DOB { get; set; }
+        public string Gender { get; set; }
+        public string Contact { get; set; }
+        public string Address { get; set; }
     }
 }

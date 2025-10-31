@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MamSys_LIB.DAL
 {
-    internal class DALPrescription
+    internal class DALPrescription : DALBase
     {
     }
 }
