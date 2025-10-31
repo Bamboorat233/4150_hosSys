@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_management_system\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
@@ -35,7 +35,7 @@
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-31T15:04:19.199Z",
               "EditorCaption": ""
@@ -50,8 +50,7 @@
               "RelativeToolTip": "App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-31T15:01:15.098Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T15:01:15.098Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DALHospital.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T15:00:04.065Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T15:00:04.065Z"
             }
           ]
         }

@@ -41,7 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALHospital.cs" />
+    <Compile Include="DAL\DALAppointment.cs" />
+    <Compile Include="DAL\DALDoctor.cs" />
+    <Compile Include="DAL\DALInvoice.cs" />
+    <Compile Include="DAL\DALMedicalRecord.cs" />
+    <Compile Include="DAL\DALMedication.cs" />
+    <Compile Include="DAL\DALPatient.cs" />
+    <Compile Include="DAL\DALPayment.cs" />
+    <Compile Include="DAL\DALPrescription.cs" />
+    <Compile Include="DAL\DALReport.cs" />
+    <Compile Include="Model\Appointment.cs" />
+    <Compile Include="Model\Department.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Invoice.cs" />
+    <Compile Include="Model\MedicalRecord.cs" />
+    <Compile Include="Model\Medication.cs" />
+    <Compile Include="Model\Patient.cs" />
+    <Compile Include="Model\Payment.cs" />
+    <Compile Include="Model\Prescription.cs" />
+    <Compile Include="Model\Report.cs" />
+    <Compile Include="Model\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
