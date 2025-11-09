@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hospital_ManSys_LIB.Models
+namespace Hospital_ManSys_LIB.Model
 {
     public class Report
     {

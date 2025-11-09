@@ -1,5 +1,4 @@
 ﻿using Hospital_MamSys_LIB.Model;
-using Hospital_MamSys_LIB.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

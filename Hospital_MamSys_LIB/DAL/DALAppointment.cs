@@ -1,6 +1,6 @@
 ﻿using Hospital_MamSys_LIB.DAL;
 using Hospital_MamSys_LIB.Model;
-using Hospital_ManSys_LIB.Models;
+using Hospital_ManSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;

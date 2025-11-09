@@ -1,8 +1,12 @@
 ﻿using Hospital_MamSys_LIB.DAL;
+using Hospital_MamSys_LIB.Model;
 using Hospital_ManSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Hospital_ManSys_LIB.DAL
 {
@@ -12,7 +16,7 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT InvoiceID, PatientID, AppointmentID, Amount, DateIssued, Status
                                  FROM dbo.Invoice WHERE InvoiceID=@id";
-            using var conn = new SqlConnection(ConnectionString);
+            using var conn = new SqlConnection(connStr);
             using var cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
