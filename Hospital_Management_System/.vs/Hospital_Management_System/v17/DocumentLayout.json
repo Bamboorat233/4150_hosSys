@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_Management_System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\lizengpu\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\dal\\daldepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\lizengpu\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\medication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\lizengpu\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\lizengpu\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\dal\\dalmedication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -16,32 +16,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DALDepartment.cs",
-              "DocumentMoniker": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALDepartment.cs",
-              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\DAL\\DALDepartment.cs",
-              "ToolTip": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALDepartment.cs",
-              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DAL\\DALDepartment.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T00:38:50.857Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Department.cs",
-              "DocumentMoniker": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Department.cs",
-              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Department.cs",
-              "ToolTip": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Department.cs",
-              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Department.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Title": "DALMedication.cs",
+              "DocumentMoniker": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALMedication.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\DAL\\DALMedication.cs",
+              "ToolTip": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALMedication.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DAL\\DALMedication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T00:35:53.517Z",
+              "WhenOpened": "2025-11-09T03:29:21.915Z",
               "EditorCaption": ""
             },
             {
@@ -59,6 +46,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Medication.cs",
+              "DocumentMoniker": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Medication.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Medication.cs",
+              "ToolTip": "C:\\Users\\lizengpu\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Medication.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Medication.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-09T03:34:20.117Z",
+              "EditorCaption": ""
             }
           ]
         }

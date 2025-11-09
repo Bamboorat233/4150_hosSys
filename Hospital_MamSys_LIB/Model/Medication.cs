@@ -10,7 +10,7 @@ namespace Hospital_ManSys_LIB.Model
     {
         public int MedID { get; set; }
         public string Name { get; set; } = "";
-        public string? Dosage { get; set; }
+        public string Dosage { get; set; } = "";
         public decimal Price { get; set; }
         public int Quantity { get; set; }
     }

@@ -8,7 +8,7 @@ namespace Hospital_ManSys_LIB.DAL
 {
     internal class DALMedication : DALBase
     {
-        public Medication? GetById(int id)
+        public Medication GetById(int id)
         {
             const string sql = @"SELECT MedID, Name, Dosage, Price, Quantity
                                  FROM dbo.Medication WHERE MedID=@id";
@@ -17,12 +17,12 @@ namespace Hospital_ManSys_LIB.DAL
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
             using var r = cmd.ExecuteReader();
-            if (!r.Read()) return null;
+            if (!r.Read()) throw new InvalidOperationException("Medication not found.");
             return new Medication
             {
                 MedID = r.GetInt32(0),
                 Name = r.GetString(1),
-                Dosage = r.IsDBNull(2) ? null : r.GetString(2),
+                Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
                 Price = r.GetDecimal(3),
                 Quantity = r.GetInt32(4)
             };
@@ -43,7 +43,7 @@ namespace Hospital_ManSys_LIB.DAL
                 {
                     MedID = r.GetInt32(0),
                     Name = r.GetString(1),
-                    Dosage = r.IsDBNull(2) ? null : r.GetString(2),
+                    Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
                     Price = r.GetDecimal(3),
                     Quantity = r.GetInt32(4)
                 });
@@ -59,11 +59,11 @@ namespace Hospital_ManSys_LIB.DAL
             using var conn = new SqlConnection(ConnectionString);
             using var cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@name", m.Name);
-            cmd.Parameters.AddWithValue("@dosage", (object?)m.Dosage ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@dosage", m.Dosage);
             cmd.Parameters.AddWithValue("@price", m.Price);
             cmd.Parameters.AddWithValue("@qty", m.Quantity);
             conn.Open();
-            return (int)cmd.ExecuteScalar()!;
+            return (int)cmd.ExecuteScalar();
         }
 
         public int Update(Medication m)
@@ -74,7 +74,7 @@ namespace Hospital_ManSys_LIB.DAL
             using var conn = new SqlConnection(ConnectionString);
             using var cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@name", m.Name);
-            cmd.Parameters.AddWithValue("@dosage", (object?)m.Dosage ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@dosage", m.Dosage);
             cmd.Parameters.AddWithValue("@price", m.Price);
             cmd.Parameters.AddWithValue("@qty", m.Quantity);
             cmd.Parameters.AddWithValue("@id", m.MedID);
