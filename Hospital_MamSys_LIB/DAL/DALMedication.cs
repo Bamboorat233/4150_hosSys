@@ -12,42 +12,58 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT MedID, Name, Dosage, Price, Quantity
                                  FROM dbo.Medication WHERE MedID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            conn.Open();
-            using var r = cmd.ExecuteReader();
-            if (!r.Read()) throw new InvalidOperationException("Medication not found.");
-            return new Medication
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                MedID = r.GetInt32(0),
-                Name = r.GetString(1),
-                Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
-                Price = r.GetDecimal(3),
-                Quantity = r.GetInt32(4)
-            };
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+
+                using (var r = cmd.ExecuteReader())
+                {
+                    if (!r.Read())
+                        throw new InvalidOperationException("Medication not found.");
+
+                    return new Medication
+                    {
+                        MedID = r.GetInt32(0),
+                        Name = r.GetString(1),
+                        Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
+                        Price = r.GetDecimal(3),
+                        Quantity = r.GetInt32(4)
+                    };
+                }
+            }
         }
 
         public List<Medication> GetAll()
         {
             const string sql = @"SELECT MedID, Name, Dosage, Price, Quantity
                                  FROM dbo.Medication ORDER BY Name";
+
             var list = new List<Medication>();
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            conn.Open();
-            using var r = cmd.ExecuteReader();
-            while (r.Read())
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                list.Add(new Medication
+                conn.Open();
+
+                using (var r = cmd.ExecuteReader())
                 {
-                    MedID = r.GetInt32(0),
-                    Name = r.GetString(1),
-                    Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
-                    Price = r.GetDecimal(3),
-                    Quantity = r.GetInt32(4)
-                });
+                    while (r.Read())
+                    {
+                        list.Add(new Medication
+                        {
+                            MedID = r.GetInt32(0),
+                            Name = r.GetString(1),
+                            Dosage = r.IsDBNull(2) ? "" : r.GetString(2),
+                            Price = r.GetDecimal(3),
+                            Quantity = r.GetInt32(4)
+                        });
+                    }
+                }
             }
+
             return list;
         }
 
@@ -56,14 +72,18 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"INSERT INTO dbo.Medication(Name, Dosage, Price, Quantity)
                                  OUTPUT INSERTED.MedID
                                  VALUES(@name, @dosage, @price, @qty)";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@name", m.Name);
-            cmd.Parameters.AddWithValue("@dosage", m.Dosage);
-            cmd.Parameters.AddWithValue("@price", m.Price);
-            cmd.Parameters.AddWithValue("@qty", m.Quantity);
-            conn.Open();
-            return (int)cmd.ExecuteScalar();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", m.Name);
+                cmd.Parameters.AddWithValue("@dosage", m.Dosage);
+                cmd.Parameters.AddWithValue("@price", m.Price);
+                cmd.Parameters.AddWithValue("@qty", m.Quantity);
+
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
         }
 
         public int Update(Medication m)
@@ -71,25 +91,32 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"UPDATE dbo.Medication
                                  SET Name=@name, Dosage=@dosage, Price=@price, Quantity=@qty
                                  WHERE MedID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@name", m.Name);
-            cmd.Parameters.AddWithValue("@dosage", m.Dosage);
-            cmd.Parameters.AddWithValue("@price", m.Price);
-            cmd.Parameters.AddWithValue("@qty", m.Quantity);
-            cmd.Parameters.AddWithValue("@id", m.MedID);
-            conn.Open();
-            return cmd.ExecuteNonQuery();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", m.Name);
+                cmd.Parameters.AddWithValue("@dosage", m.Dosage);
+                cmd.Parameters.AddWithValue("@price", m.Price);
+                cmd.Parameters.AddWithValue("@qty", m.Quantity);
+                cmd.Parameters.AddWithValue("@id", m.MedID);
+
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.Medication WHERE MedID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            conn.Open();
-            return cmd.ExecuteNonQuery();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }
