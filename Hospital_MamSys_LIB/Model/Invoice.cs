@@ -12,7 +12,7 @@ namespace Hospital_ManSys_LIB.Model
         public int PatientID { get; set; }
         public int AppointmentID { get; set; }
         public decimal Amount { get; set; }
-        public DateTime DateIssued { get; set; }  
+        public DateTime DateIssued { get; set; }
         public string Status { get; set; } = "Unpaid";
     }
 }
