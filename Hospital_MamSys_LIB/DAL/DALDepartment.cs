@@ -12,18 +12,14 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT DepartmentID, Name, Location
                                  FROM dbo.Department WHERE DepartmentID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    if (!r.Read())
-                        throw new InvalidOperationException("Department not found.");
-
+                    if (!r.Read()) throw new InvalidOperationException("Department not found.");
                     return new Department
                     {
                         DepartmentID = r.GetInt32(0),
@@ -37,14 +33,12 @@ namespace Hospital_ManSys_LIB.DAL
         public List<Department> GetAll()
         {
             const string sql = @"SELECT DepartmentID, Name, Location FROM dbo.Department ORDER BY Name";
-            var list = new List<Department>();
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            List<Department> list = new List<Department>();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
@@ -57,7 +51,6 @@ namespace Hospital_ManSys_LIB.DAL
                     }
                 }
             }
-
             return list;
         }
 
@@ -66,13 +59,11 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"INSERT INTO dbo.Department(Name, Location)
                                  OUTPUT INSERTED.DepartmentID
                                  VALUES(@name, @loc)";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@name", d.Name);
                 cmd.Parameters.AddWithValue("@loc", d.Location);
-
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
             }
@@ -83,14 +74,12 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"UPDATE dbo.Department
                                  SET Name=@name, Location=@loc
                                  WHERE DepartmentID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@name", d.Name);
                 cmd.Parameters.AddWithValue("@loc", d.Location);
                 cmd.Parameters.AddWithValue("@id", d.DepartmentID);
-
                 conn.Open();
                 return cmd.ExecuteNonQuery();
             }
@@ -99,9 +88,8 @@ namespace Hospital_ManSys_LIB.DAL
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.Department WHERE DepartmentID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();

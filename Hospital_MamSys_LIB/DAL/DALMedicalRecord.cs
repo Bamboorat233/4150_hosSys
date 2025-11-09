@@ -12,18 +12,14 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT RecordID, PatientID, DoctorID, Diagnosis, Treatment, VisitDate
                                  FROM dbo.MedicalRecord WHERE RecordID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    if (!r.Read())
-                        throw new InvalidOperationException("Medical record not found.");
-
+                    if (!r.Read()) throw new InvalidOperationException("Medical record not found.");
                     return new MedicalRecord
                     {
                         RecordID = r.GetInt32(0),
@@ -43,16 +39,13 @@ namespace Hospital_ManSys_LIB.DAL
                                  FROM dbo.MedicalRecord
                                  WHERE PatientID=@pid
                                  ORDER BY VisitDate DESC";
-
-            var list = new List<MedicalRecord>();
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            List<MedicalRecord> list = new List<MedicalRecord>();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@pid", patientId);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
@@ -68,7 +61,6 @@ namespace Hospital_ManSys_LIB.DAL
                     }
                 }
             }
-
             return list;
         }
 
@@ -78,16 +70,13 @@ namespace Hospital_ManSys_LIB.DAL
                                  FROM dbo.MedicalRecord
                                  WHERE DoctorID=@did
                                  ORDER BY VisitDate DESC";
-
-            var list = new List<MedicalRecord>();
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            List<MedicalRecord> list = new List<MedicalRecord>();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@did", doctorId);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
@@ -103,7 +92,6 @@ namespace Hospital_ManSys_LIB.DAL
                     }
                 }
             }
-
             return list;
         }
 
@@ -112,16 +100,14 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"INSERT INTO dbo.MedicalRecord(PatientID, DoctorID, Diagnosis, Treatment, VisitDate)
                                  OUTPUT INSERTED.RecordID
                                  VALUES(@pid, @did, @diag, @treat, @visit)";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@pid", m.PatientID);
                 cmd.Parameters.AddWithValue("@did", m.DoctorID);
                 cmd.Parameters.AddWithValue("@diag", m.Diagnosis);
                 cmd.Parameters.AddWithValue("@treat", m.Treatment);
                 cmd.Parameters.AddWithValue("@visit", m.VisitDate);
-
                 conn.Open();
                 return (int)cmd.ExecuteScalar();
             }
@@ -132,9 +118,8 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"UPDATE dbo.MedicalRecord
                                  SET PatientID=@pid, DoctorID=@did, Diagnosis=@diag, Treatment=@treat, VisitDate=@visit
                                  WHERE RecordID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@pid", m.PatientID);
                 cmd.Parameters.AddWithValue("@did", m.DoctorID);
@@ -142,7 +127,6 @@ namespace Hospital_ManSys_LIB.DAL
                 cmd.Parameters.AddWithValue("@treat", m.Treatment);
                 cmd.Parameters.AddWithValue("@visit", m.VisitDate);
                 cmd.Parameters.AddWithValue("@id", m.RecordID);
-
                 conn.Open();
                 return cmd.ExecuteNonQuery();
             }
@@ -151,9 +135,8 @@ namespace Hospital_ManSys_LIB.DAL
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.MedicalRecord WHERE RecordID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
