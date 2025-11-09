@@ -121,11 +121,5 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Hospital_MamSys_LIB\Hospital_MamSys_LIB.csproj">
-      <Project>{317c7479-0738-49a6-89dd-7a275b66ae53}</Project>
-      <Name>Hospital_MamSys_LIB</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
