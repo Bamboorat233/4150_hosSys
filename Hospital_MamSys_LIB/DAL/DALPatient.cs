@@ -18,8 +18,8 @@ VALUES (@n, @dob, @g, @c, @a);";
                 cmd.Parameters.AddWithValue("@n", p.Name ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@dob", p.DOB); // DOB 为 NOT NULL
                 cmd.Parameters.AddWithValue("@g", p.Gender ?? (object)DBNull.Value); // 需满足 'Male'/'Female'/'Other'
-                cmd.Parameters.AddWithValue("@c", (object?)p.Contact ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@a", (object?)p.Address ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@c", (object)p.Contact ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@a", (object)p.Address ?? DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -71,7 +71,7 @@ WHERE PatientID = @id;";
             using (var conn = new SqlConnection(connStr))
             using (var cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@contact", (object?)newContact ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@contact", (object)newContact ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@id", patientId);
                 conn.Open();
                 return cmd.ExecuteNonQuery();
