@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hospital_MamSys_LIB.Model
+namespace Hospital_ManSys_LIB.Models
 {
-    internal class Report
+    public class Report
     {
+        public int ReportID { get; set; }
+        public int PatientID { get; set; }
+        public int DoctorID { get; set; }
+        public DateTime ReportDate { get; set; }
+        public string Diagnosis { get; set; }
+        public string Treatment { get; set; }
     }
 }
