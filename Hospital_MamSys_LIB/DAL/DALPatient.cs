@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using Hospital_MamSys_LIB.Models;
+using Hospital_MamSys_LIB.Model;
 
 namespace Hospital_MamSys_LIB.DAL
 {
@@ -10,18 +8,73 @@ namespace Hospital_MamSys_LIB.DAL
     {
         public void AddPatient(Patient p)
         {
-            using (SqlConnection conn = new SqlConnection(connStr))
-            using (SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Patient(Name, DOB, Gender, Contact, Address) VALUES(@n, @d, @g, @c, @a)", conn))
+            const string sql = @"
+INSERT INTO Patient (Name, DOB, Gender, Contact, [Address])
+VALUES (@n, @dob, @g, @c, @a);";
+
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@n", p.Name);
-                cmd.Parameters.AddWithValue("@d", p.DOB);
-                cmd.Parameters.AddWithValue("@g", p.Gender);
-                cmd.Parameters.AddWithValue("@c", p.Contact);
-                cmd.Parameters.AddWithValue("@a", p.Address);
+                cmd.Parameters.AddWithValue("@n", p.Name ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@dob", p.DOB); // DOB 为 NOT NULL
+                cmd.Parameters.AddWithValue("@g", p.Gender ?? (object)DBNull.Value); // 需满足 'Male'/'Female'/'Other'
+                cmd.Parameters.AddWithValue("@c", (object?)p.Contact ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@a", (object?)p.Address ?? DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
+            }
+        }
+        public Patient GetById(int patientId)
+        {
+            const string sql = @"
+SELECT PatientID, Name, DOB, Gender, Contact, [Address]
+FROM Patient
+WHERE PatientID = @id;";
+
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", patientId);
+                conn.Open();
+
+                using (var rd = cmd.ExecuteReader())
+                {
+                    if (!rd.Read()) return null;
+
+                    return new Patient
+                    {
+                        PatientID = rd.GetInt32(rd.GetOrdinal("PatientID")),
+                        Name = rd["Name"] as string,
+                        DOB = rd.GetDateTime(rd.GetOrdinal("DOB")),
+                        Gender = rd["Gender"] as string,
+                        Contact = rd["Contact"] as string,
+                        Address = rd["Address"] as string
+                    };
+                }
+            }
+        }
+        public int DeleteById(int patientId)
+        {
+            const string sql = "DELETE FROM Patient WHERE PatientID = @id;";
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", patientId);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
+        public int UpdateContactById(int patientId, string newContact)
+        {
+            const string sql = "UPDATE Patient SET Contact = @contact WHERE PatientID = @id;";
+            using (var conn = new SqlConnection(connStr))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@contact", (object?)newContact ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@id", patientId);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
             }
         }
     }
