@@ -1,12 +1,8 @@
 ﻿using Hospital_MamSys_LIB.DAL;
-using Hospital_MamSys_LIB.Model;
 using Hospital_ManSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hospital_ManSys_LIB.DAL
 {
@@ -16,18 +12,14 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT InvoiceID, PatientID, AppointmentID, Amount, DateIssued, Status
                                  FROM dbo.Invoice WHERE InvoiceID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    if (!r.Read())
-                        throw new InvalidOperationException("Invoice not found.");
-
+                    if (!r.Read()) throw new InvalidOperationException("Invoice not found.");
                     return new Invoice
                     {
                         InvoiceID = r.GetInt32(0),
@@ -45,18 +37,14 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT InvoiceID, PatientID, AppointmentID, Amount, DateIssued, Status
                                  FROM dbo.Invoice WHERE AppointmentID=@aid";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@aid", appointmentId);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
-                    if (!r.Read())
-                        throw new InvalidOperationException("Invoice not found for this appointment.");
-
+                    if (!r.Read()) throw new InvalidOperationException("Invoice not found for this appointment.");
                     return new Invoice
                     {
                         InvoiceID = r.GetInt32(0),
@@ -76,16 +64,13 @@ namespace Hospital_ManSys_LIB.DAL
                                  FROM dbo.Invoice
                                  WHERE PatientID=@pid
                                  ORDER BY DateIssued DESC";
-
-            var list = new List<Invoice>();
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            List<Invoice> list = new List<Invoice>();
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@pid", patientId);
                 conn.Open();
-
-                using (var r = cmd.ExecuteReader())
+                using (SqlDataReader r = cmd.ExecuteReader())
                 {
                     while (r.Read())
                     {
@@ -101,7 +86,6 @@ namespace Hospital_ManSys_LIB.DAL
                     }
                 }
             }
-
             return list;
         }
 
@@ -110,18 +94,16 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"INSERT INTO dbo.Invoice(PatientID, AppointmentID, Amount, DateIssued, Status)
                                  OUTPUT INSERTED.InvoiceID
                                  VALUES(@pid, @aid, @amt, @dateIssued, @status)";
-
             try
             {
-                using (var conn = new SqlConnection(ConnectionString))
-                using (var cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@pid", i.PatientID);
                     cmd.Parameters.AddWithValue("@aid", i.AppointmentID);
                     cmd.Parameters.AddWithValue("@amt", i.Amount);
                     cmd.Parameters.AddWithValue("@dateIssued", i.DateIssued);
                     cmd.Parameters.AddWithValue("@status", i.Status);
-
                     conn.Open();
                     return (int)cmd.ExecuteScalar();
                 }
@@ -139,11 +121,10 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"UPDATE dbo.Invoice
                                  SET PatientID=@pid, AppointmentID=@aid, Amount=@amt, DateIssued=@dateIssued, Status=@status
                                  WHERE InvoiceID=@id";
-
             try
             {
-                using (var conn = new SqlConnection(ConnectionString))
-                using (var cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@pid", i.PatientID);
                     cmd.Parameters.AddWithValue("@aid", i.AppointmentID);
@@ -151,7 +132,6 @@ namespace Hospital_ManSys_LIB.DAL
                     cmd.Parameters.AddWithValue("@dateIssued", i.DateIssued);
                     cmd.Parameters.AddWithValue("@status", i.Status);
                     cmd.Parameters.AddWithValue("@id", i.InvoiceID);
-
                     conn.Open();
                     return cmd.ExecuteNonQuery();
                 }
@@ -167,13 +147,11 @@ namespace Hospital_ManSys_LIB.DAL
         public int UpdateStatus(int invoiceId, string status)
         {
             const string sql = @"UPDATE dbo.Invoice SET Status=@status WHERE InvoiceID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@status", status);
                 cmd.Parameters.AddWithValue("@id", invoiceId);
-
                 conn.Open();
                 return cmd.ExecuteNonQuery();
             }
@@ -182,9 +160,8 @@ namespace Hospital_ManSys_LIB.DAL
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.Invoice WHERE InvoiceID=@id";
-
-            using (var conn = new SqlConnection(ConnectionString))
-            using (var cmd = new SqlCommand(sql, conn))
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@id", id);
                 conn.Open();
