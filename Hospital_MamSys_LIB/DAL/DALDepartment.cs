@@ -30,19 +30,20 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT DepartmentID, Name, Location FROM dbo.Department ORDER BY Name";
             var list = new List<Department>();
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            conn.Open();
-            using var r = cmd.ExecuteReader();
-            while (r.Read())
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                list.Add(new Department
+                conn.Open();
+
+                using (var r = cmd.ExecuteReader())
                 {
                     DepartmentID = r.GetInt32(0),
                     Name = r.GetString(1),
                     Location = r.IsDBNull(2) ? "" : r.GetString(2)
                 });
             }
+
             return list;
         }
 
@@ -76,11 +77,14 @@ namespace Hospital_ManSys_LIB.DAL
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.Department WHERE DepartmentID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            conn.Open();
-            return cmd.ExecuteNonQuery();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }
