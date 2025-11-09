@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hospital_MamSys_LIB.Models
+namespace Hospital_MamSys_LIB.Model
 {
     public class Patient
     {
