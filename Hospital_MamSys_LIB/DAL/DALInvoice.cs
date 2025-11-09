@@ -8,7 +8,7 @@ namespace Hospital_ManSys_LIB.DAL
 {
     internal class DALInvoice : DALBase
     {
-        public Invoice? GetById(int id)
+        public Invoice GetById(int id)
         {
             const string sql = @"SELECT InvoiceID, PatientID, AppointmentID, Amount, DateIssued, Status
                                  FROM dbo.Invoice WHERE InvoiceID=@id";
@@ -17,7 +17,7 @@ namespace Hospital_ManSys_LIB.DAL
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
             using var r = cmd.ExecuteReader();
-            if (!r.Read()) return null;
+            if (!r.Read()) throw new InvalidOperationException("Invoice not found.");
             return new Invoice
             {
                 InvoiceID = r.GetInt32(0),
@@ -29,7 +29,7 @@ namespace Hospital_ManSys_LIB.DAL
             };
         }
 
-        public Invoice? GetByAppointment(int appointmentId)
+        public Invoice GetByAppointment(int appointmentId)
         {
             const string sql = @"SELECT InvoiceID, PatientID, AppointmentID, Amount, DateIssued, Status
                                  FROM dbo.Invoice WHERE AppointmentID=@aid";
@@ -38,7 +38,7 @@ namespace Hospital_ManSys_LIB.DAL
             cmd.Parameters.AddWithValue("@aid", appointmentId);
             conn.Open();
             using var r = cmd.ExecuteReader();
-            if (!r.Read()) return null;
+            if (!r.Read()) throw new InvalidOperationException("Invoice not found for this appointment.");
             return new Invoice
             {
                 InvoiceID = r.GetInt32(0),
@@ -92,7 +92,7 @@ namespace Hospital_ManSys_LIB.DAL
                 cmd.Parameters.AddWithValue("@dateIssued", i.DateIssued);
                 cmd.Parameters.AddWithValue("@status", i.Status);
                 conn.Open();
-                return (int)cmd.ExecuteScalar()!;
+                return (int)cmd.ExecuteScalar();
             }
             catch (SqlException ex) when (ex.Number == 2627 || ex.Number == 2601)
             {

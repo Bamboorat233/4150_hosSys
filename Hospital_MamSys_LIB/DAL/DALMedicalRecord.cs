@@ -8,7 +8,7 @@ namespace Hospital_ManSys_LIB.DAL
 {
     internal class DALMedicalRecord : DALBase
     {
-        public MedicalRecord? GetById(int id)
+        public MedicalRecord GetById(int id)
         {
             const string sql = @"SELECT RecordID, PatientID, DoctorID, Diagnosis, Treatment, VisitDate
                                  FROM dbo.MedicalRecord WHERE RecordID=@id";
@@ -17,14 +17,14 @@ namespace Hospital_ManSys_LIB.DAL
             cmd.Parameters.AddWithValue("@id", id);
             conn.Open();
             using var r = cmd.ExecuteReader();
-            if (!r.Read()) return null;
+            if (!r.Read()) throw new InvalidOperationException("Medical record not found.");
             return new MedicalRecord
             {
                 RecordID = r.GetInt32(0),
                 PatientID = r.GetInt32(1),
                 DoctorID = r.GetInt32(2),
-                Diagnosis = r.IsDBNull(3) ? null : r.GetString(3),
-                Treatment = r.IsDBNull(4) ? null : r.GetString(4),
+                Diagnosis = r.IsDBNull(3) ? "" : r.GetString(3),
+                Treatment = r.IsDBNull(4) ? "" : r.GetString(4),
                 VisitDate = r.GetDateTime(5)
             };
         }
@@ -48,8 +48,8 @@ namespace Hospital_ManSys_LIB.DAL
                     RecordID = r.GetInt32(0),
                     PatientID = r.GetInt32(1),
                     DoctorID = r.GetInt32(2),
-                    Diagnosis = r.IsDBNull(3) ? null : r.GetString(3),
-                    Treatment = r.IsDBNull(4) ? null : r.GetString(4),
+                    Diagnosis = r.IsDBNull(3) ? "" : r.GetString(3),
+                    Treatment = r.IsDBNull(4) ? "" : r.GetString(4),
                     VisitDate = r.GetDateTime(5)
                 });
             }
@@ -75,8 +75,8 @@ namespace Hospital_ManSys_LIB.DAL
                     RecordID = r.GetInt32(0),
                     PatientID = r.GetInt32(1),
                     DoctorID = r.GetInt32(2),
-                    Diagnosis = r.IsDBNull(3) ? null : r.GetString(3),
-                    Treatment = r.IsDBNull(4) ? null : r.GetString(4),
+                    Diagnosis = r.IsDBNull(3) ? "" : r.GetString(3),
+                    Treatment = r.IsDBNull(4) ? "" : r.GetString(4),
                     VisitDate = r.GetDateTime(5)
                 });
             }
@@ -92,11 +92,11 @@ namespace Hospital_ManSys_LIB.DAL
             using var cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@pid", m.PatientID);
             cmd.Parameters.AddWithValue("@did", m.DoctorID);
-            cmd.Parameters.AddWithValue("@diag", (object?)m.Diagnosis ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@treat", (object?)m.Treatment ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@diag", m.Diagnosis);
+            cmd.Parameters.AddWithValue("@treat", m.Treatment);
             cmd.Parameters.AddWithValue("@visit", m.VisitDate);
             conn.Open();
-            return (int)cmd.ExecuteScalar()!;
+            return (int)cmd.ExecuteScalar();
         }
 
         public int Update(MedicalRecord m)
@@ -108,8 +108,8 @@ namespace Hospital_ManSys_LIB.DAL
             using var cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@pid", m.PatientID);
             cmd.Parameters.AddWithValue("@did", m.DoctorID);
-            cmd.Parameters.AddWithValue("@diag", (object?)m.Diagnosis ?? DBNull.Value);
-            cmd.Parameters.AddWithValue("@treat", (object?)m.Treatment ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("@diag", m.Diagnosis);
+            cmd.Parameters.AddWithValue("@treat", m.Treatment);
             cmd.Parameters.AddWithValue("@visit", m.VisitDate);
             cmd.Parameters.AddWithValue("@id", m.RecordID);
             conn.Open();

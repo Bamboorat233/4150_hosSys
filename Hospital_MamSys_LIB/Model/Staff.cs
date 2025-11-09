@@ -11,7 +11,7 @@ namespace Hospital_ManSys_LIB.Model
         public int StaffID { get; set; }
         public string Name { get; set; } = "";
         public string Role { get; set; } = "";
-        public string? Contact { get; set; }
-        public int? DepartmentID { get; set; }
+        public string Contact { get; set; } = "";
+        public int DepartmentID { get; set; }
     }
 }
