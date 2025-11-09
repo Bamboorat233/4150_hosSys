@@ -12,37 +12,52 @@ namespace Hospital_ManSys_LIB.DAL
         {
             const string sql = @"SELECT DepartmentID, Name, Location
                                  FROM dbo.Department WHERE DepartmentID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            conn.Open();
-            using var r = cmd.ExecuteReader();
-            if (!r.Read()) throw new InvalidOperationException("Department not found.");
-            return new Department
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                DepartmentID = r.GetInt32(0),
-                Name = r.GetString(1),
-                Location = r.IsDBNull(2) ? "" : r.GetString(2)
-            };
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+
+                using (var r = cmd.ExecuteReader())
+                {
+                    if (!r.Read())
+                        throw new InvalidOperationException("Department not found.");
+
+                    return new Department
+                    {
+                        DepartmentID = r.GetInt32(0),
+                        Name = r.GetString(1),
+                        Location = r.IsDBNull(2) ? "" : r.GetString(2)
+                    };
+                }
+            }
         }
 
         public List<Department> GetAll()
         {
             const string sql = @"SELECT DepartmentID, Name, Location FROM dbo.Department ORDER BY Name";
             var list = new List<Department>();
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            conn.Open();
-            using var r = cmd.ExecuteReader();
-            while (r.Read())
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                list.Add(new Department
+                conn.Open();
+
+                using (var r = cmd.ExecuteReader())
                 {
-                    DepartmentID = r.GetInt32(0),
-                    Name = r.GetString(1),
-                    Location = r.IsDBNull(2) ? "" : r.GetString(2)
-                });
+                    while (r.Read())
+                    {
+                        list.Add(new Department
+                        {
+                            DepartmentID = r.GetInt32(0),
+                            Name = r.GetString(1),
+                            Location = r.IsDBNull(2) ? "" : r.GetString(2)
+                        });
+                    }
+                }
             }
+
             return list;
         }
 
@@ -51,12 +66,16 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"INSERT INTO dbo.Department(Name, Location)
                                  OUTPUT INSERTED.DepartmentID
                                  VALUES(@name, @loc)";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@name", d.Name);
-            cmd.Parameters.AddWithValue("@loc", d.Location);
-            conn.Open();
-            return (int)cmd.ExecuteScalar();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", d.Name);
+                cmd.Parameters.AddWithValue("@loc", d.Location);
+
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
         }
 
         public int Update(Department d)
@@ -64,23 +83,30 @@ namespace Hospital_ManSys_LIB.DAL
             const string sql = @"UPDATE dbo.Department
                                  SET Name=@name, Location=@loc
                                  WHERE DepartmentID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@name", d.Name);
-            cmd.Parameters.AddWithValue("@loc", d.Location);
-            cmd.Parameters.AddWithValue("@id", d.DepartmentID);
-            conn.Open();
-            return cmd.ExecuteNonQuery();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", d.Name);
+                cmd.Parameters.AddWithValue("@loc", d.Location);
+                cmd.Parameters.AddWithValue("@id", d.DepartmentID);
+
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
 
         public int Delete(int id)
         {
             const string sql = @"DELETE FROM dbo.Department WHERE DepartmentID=@id";
-            using var conn = new SqlConnection(ConnectionString);
-            using var cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@id", id);
-            conn.Open();
-            return cmd.ExecuteNonQuery();
+
+            using (var conn = new SqlConnection(ConnectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@id", id);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }
