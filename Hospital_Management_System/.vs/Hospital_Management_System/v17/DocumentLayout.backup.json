@@ -3,15 +3,25 @@
   "WorkspaceRootPath": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_management_system\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{2D8090A7-98FC-4A8F-9EBF-DC8B0896A1D0}|Hospital_MamSys_GUI.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\dalhospital.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\model\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\dal\\dalpatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{317C7479-0738-49A6-89DD-7A275B66AE53}|..\\Hospital_MamSys_LIB\\Hospital_MamSys_LIB.csproj|c:\\users\\26773\\source\\repos\\4150_hossys\\hospital_mamsys_lib\\dal\\daldoctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,39 +40,91 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
+              "Title": "Staff.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Staff.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Staff.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Staff.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Staff.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T15:04:19.199Z",
+              "WhenOpened": "2025-11-09T01:18:25.529Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\App.config",
-              "RelativeDocumentMoniker": "App.config",
-              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_Management_System\\App.config",
-              "RelativeToolTip": "App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-10-31T15:01:15.098Z"
+              "DocumentIndex": 6,
+              "Title": "DALDoctor.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALDoctor.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\DAL\\DALDoctor.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALDoctor.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DAL\\DALDoctor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T18:54:51.789Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DALHospital.cs",
-              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DALHospital.cs",
-              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\DALHospital.cs",
-              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DALHospital.cs",
-              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DALHospital.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
+              "Title": "Department.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Department.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Department.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Department.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-31T15:00:04.065Z"
+              "WhenOpened": "2025-11-01T19:48:38.523Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Appointment.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Appointment.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Appointment.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Appointment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-01T19:48:35.018Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Doctor.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Doctor.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Doctor.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Doctor.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Doctor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T19:08:57.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Patient.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\Model\\Patient.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\Model\\Patient.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\Model\\Patient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T18:51:17.694Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DALPatient.cs",
+              "DocumentMoniker": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALPatient.cs",
+              "RelativeDocumentMoniker": "..\\Hospital_MamSys_LIB\\DAL\\DALPatient.cs",
+              "ToolTip": "C:\\Users\\26773\\source\\repos\\4150_hosSys\\Hospital_MamSys_LIB\\DAL\\DALPatient.cs",
+              "RelativeToolTip": "..\\Hospital_MamSys_LIB\\DAL\\DALPatient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T18:55:02.572Z"
             }
           ]
         }
