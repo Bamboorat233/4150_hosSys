@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MamSys_LIB.DAL
 {
-    internal class DALPayment : DALBase
+    public class DALPayment : DALBase
     {
         // CREATE
         public void AddPayment(Payment p)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MamSys_LIB.Model
 {
-    internal class Payment
+    public class Payment
     {
         public int PaymentID { get; set; }
         public int InvoiceID { get; set; }

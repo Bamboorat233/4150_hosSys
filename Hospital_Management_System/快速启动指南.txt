@@ -1,0 +1,73 @@
+===============================================
+医院管理系统 - 快速启动指南
+Hospital Management System - Quick Start Guide
+===============================================
+
+【第一步：数据库设置】
+1. 打开 SQL Server Management Studio 或 Visual Studio
+2. 连接到 (LocalDB)\MSSQLLocalDB
+3. 找到并打开 hospital_schema.mdf 数据库
+4. 执行 SQL 脚本: add_user_table.sql
+   - 这将创建 User 表并插入测试用户
+
+【第二步：运行程序】
+1. 在 Visual Studio 中打开解决方案
+2. 确保 Hospital_MamSys_GUI 是启动项目
+3. 按 F5 运行程序
+
+【第三步：登录】
+使用以下任一账户登录：
+
+管理员账户:
+- 用户名: admin
+- 密码: admin123
+- 权限: 所有功能模块
+
+医生账户:
+- 用户名: doctor1
+- 密码: doc123
+- 权限: 基本管理模块
+
+【功能模块】
+✓ 患者管理 - 完整的CRUD操作
+✓ 医生管理 - 完整的CRUD操作
+✓ 预约管理 - 完整的CRUD操作
+✓ 用户角色权限控制
+
+【常见操作】
+1. 新增患者
+   - 左侧菜单 -> 患者管理
+   - 右侧填写表单
+   - 点击"新增患者"
+
+2. 查看和搜索
+   - 使用顶部搜索框
+   - 点击列表查看详情
+
+3. 更新信息
+   - 选择记录
+   - 修改信息
+   - 点击"更新信息"
+
+4. 删除记录
+   - 选择记录
+   - 点击"删除"按钮
+   - 确认操作
+
+【注意事项】
+⚠ 首次运行前必须执行 add_user_table.sql
+⚠ 添加医生时需要有效的科室ID (可先在数据库中添加科室)
+⚠ 创建预约时需要有效的患者ID和医生ID
+⚠ 密码为明文存储，仅用于演示
+
+【项目要求对照】
+✓ Functional User Interface (desktop) - WPF 桌面应用
+✓ CRUD Operations - 完整的增删改查功能
+✓ User Roles (Admin, Normal User) - 多角色权限管理
+✓ Tools: C#/.NET - WPF + .NET Framework 4.7.2
+✓ Database Integration - SQL Server LocalDB 完整集成
+
+===============================================
+详细说明请参阅: GUI_使用说明.md
+===============================================
+

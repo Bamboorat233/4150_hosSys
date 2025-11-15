@@ -1,12 +1,315 @@
 ﻿<Window x:Class="Hospital_MamSys_GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Hospital_MamSys_GUI"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Hospital Management System - Dashboard" 
+        Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+    
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="20,15"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                            VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357ABD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DashboardCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="20"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="#CCCCCC" 
+                                      Direction="270" 
+                                      ShadowDepth="2" 
+                                      BlurRadius="10" 
+                                      Opacity="0.3"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="25,12"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357ABD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Sidebar -->
+        <Border Grid.Column="0" Background="#2C3E50">
+            <StackPanel>
+                <!-- User Info -->
+                <Border Background="#34495E" Padding="20,25">
+                    <StackPanel>
+                        <TextBlock x:Name="txtWelcome" 
+                                  Text="Welcome" 
+                                  FontSize="18" 
+                                  FontWeight="Bold" 
+                                  Foreground="White"/>
+                        <TextBlock x:Name="txtUserRole" 
+                                  Text="Role" 
+                                  FontSize="12" 
+                                  Foreground="#BDC3C7"
+                                  Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Menu Options -->
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock Text="MANAGEMENT" 
+                              FontSize="12" 
+                              Foreground="#7F8C8D" 
+                              Margin="20,0,0,10"
+                              FontWeight="SemiBold"/>
+
+                    <Button x:Name="btnPatientManagement" 
+                           Content="📋 Patients" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnPatientManagement_Click"/>
+
+                    <Button x:Name="btnDoctorManagement" 
+                           Content="👨‍⚕️ Doctors" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnDoctorManagement_Click"/>
+
+                    <Button x:Name="btnAppointmentManagement" 
+                           Content="📅 Appointments" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnAppointmentManagement_Click"/>
+
+                    <Button x:Name="btnDepartmentManagement" 
+                           Content="🏥 Departments" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnDepartmentManagement_Click"
+                           Visibility="Collapsed"/>
+
+                    <Button x:Name="btnUserManagement" 
+                           Content="👤 Users" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnUserManagement_Click"
+                           Visibility="Collapsed"/>
+
+                    <Separator Margin="10,20" Background="#34495E"/>
+
+                    <Button Content="🚪 Logout" 
+                           Style="{StaticResource MenuButtonStyle}"
+                           Click="BtnLogout_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1" Background="#ECF0F1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Title Bar -->
+            <Border Grid.Row="0" Background="White">
+                <Border.Effect>
+                    <DropShadowEffect Color="#CCCCCC" 
+                                      Direction="270" 
+                                      ShadowDepth="1" 
+                                      BlurRadius="5" 
+                                      Opacity="0.2"/>
+                </Border.Effect>
+                <Grid Margin="30,0">
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="Hospital Management System" 
+                                  FontSize="24" 
+                                  FontWeight="Bold" 
+                                  Foreground="#2C3E50"/>
+                        <TextBlock Text="Dashboard" 
+                                  FontSize="12" 
+                                  Foreground="#7F8C8D"
+                                  Margin="0,5,0,0"/>
+                    </StackPanel>
+                    <TextBlock x:Name="txtDateTime" 
+                              Text="2024-01-01 12:00:00" 
+                              FontSize="12" 
+                              Foreground="#7F8C8D"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+
+            <!-- Dashboard Content -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="30,20">
+                    <TextBlock Text="Quick Actions" 
+                              FontSize="20" 
+                              FontWeight="SemiBold" 
+                              Foreground="#2C3E50"
+                              Margin="0,0,0,15"/>
+
+                    <!-- Quick Action Cards -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Patient Management Card -->
+                        <Border Grid.Column="0" Style="{StaticResource DashboardCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="📋" FontSize="40" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Patient Management" 
+                                          FontSize="18" 
+                                          FontWeight="SemiBold" 
+                                          HorizontalAlignment="Center"
+                                          Margin="0,10,0,5"
+                                          Foreground="#2C3E50"/>
+                                <TextBlock Text="Manage patient information and records" 
+                                          FontSize="12" 
+                                          Foreground="#7F8C8D"
+                                          TextWrapping="Wrap"
+                                          TextAlignment="Center"
+                                          Margin="0,0,0,15"/>
+                                <Button Content="Open" 
+                                       Style="{StaticResource ActionButtonStyle}"
+                                       Click="BtnPatientManagement_Click"
+                                       HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Doctor Management Card -->
+                        <Border Grid.Column="1" Style="{StaticResource DashboardCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="👨‍⚕️" FontSize="40" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Doctor Management" 
+                                          FontSize="18" 
+                                          FontWeight="SemiBold" 
+                                          HorizontalAlignment="Center"
+                                          Margin="0,10,0,5"
+                                          Foreground="#2C3E50"/>
+                                <TextBlock Text="Manage doctor information and specializations" 
+                                          FontSize="12" 
+                                          Foreground="#7F8C8D"
+                                          TextWrapping="Wrap"
+                                          TextAlignment="Center"
+                                          Margin="0,0,0,15"/>
+                                <Button Content="Open" 
+                                       Style="{StaticResource ActionButtonStyle}"
+                                       Click="BtnDoctorManagement_Click"
+                                       HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Appointment Management Card -->
+                        <Border Grid.Column="2" Style="{StaticResource DashboardCardStyle}">
+                            <StackPanel>
+                                <TextBlock Text="📅" FontSize="40" HorizontalAlignment="Center"/>
+                                <TextBlock Text="Appointment Management" 
+                                          FontSize="18" 
+                                          FontWeight="SemiBold" 
+                                          HorizontalAlignment="Center"
+                                          Margin="0,10,0,5"
+                                          Foreground="#2C3E50"/>
+                                <TextBlock Text="Manage appointments and schedules" 
+                                          FontSize="12" 
+                                          Foreground="#7F8C8D"
+                                          TextWrapping="Wrap"
+                                          TextAlignment="Center"
+                                          Margin="0,0,0,15"/>
+                                <Button Content="Open" 
+                                       Style="{StaticResource ActionButtonStyle}"
+                                       Click="BtnAppointmentManagement_Click"
+                                       HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- System Information -->
+                    <Border Style="{StaticResource DashboardCardStyle}" Margin="10,20,10,10">
+                        <StackPanel>
+                            <TextBlock Text="System Information" 
+                                      FontSize="18" 
+                                      FontWeight="SemiBold" 
+                                      Foreground="#2C3E50"
+                                      Margin="0,0,0,15"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="System Version: 1.0.0" 
+                                              FontSize="13" 
+                                              Foreground="#7F8C8D"
+                                              Margin="0,5"/>
+                                    <TextBlock Text="Database: SQL Server LocalDB" 
+                                              FontSize="13" 
+                                              Foreground="#7F8C8D"
+                                              Margin="0,5"/>
+                                </StackPanel>
+                                
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Framework: WPF .NET 4.7.2" 
+                                              FontSize="13" 
+                                              Foreground="#7F8C8D"
+                                              Margin="0,5"/>
+                                    <TextBlock x:Name="txtCurrentUser" 
+                                              Text="Current User: -" 
+                                              FontSize="13" 
+                                              Foreground="#7F8C8D"
+                                              Margin="0,5"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

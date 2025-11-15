@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hospital_ManSys_LIB.Model
+namespace Hospital_MamSys_LIB.Model
 {
-    internal class Medication
+    public class Medication
     {
         public int MedID { get; set; }
         public string Name { get; set; } = "";

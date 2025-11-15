@@ -1,12 +1,12 @@
 ﻿using Hospital_MamSys_LIB.DAL;
-using Hospital_ManSys_LIB.Model;
+using Hospital_MamSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace Hospital_ManSys_LIB.DAL
+namespace Hospital_MamSys_LIB.DAL
 {
-    internal class DALInvoice : DALBase
+    public class DALInvoice : DALBase
     {
         public Invoice GetById(int id)
         {
