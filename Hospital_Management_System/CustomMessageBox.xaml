@@ -1,0 +1,44 @@
+<Window x:Class="Hospital_MamSys_GUI.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Information" 
+        Height="200" Width="400"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Message Content -->
+        <Border Grid.Row="0" Padding="20" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Icon -->
+                <Image x:Name="imgIcon" Grid.Column="0" Width="48" Height="48" Margin="0,0,15,0" VerticalAlignment="Top"/>
+
+                <!-- Message Text -->
+                <TextBlock x:Name="txtMessage" Grid.Column="1" 
+                          TextWrapping="Wrap" 
+                          VerticalAlignment="Center"
+                          FontSize="13"
+                          Foreground="#2C3E50"/>
+            </Grid>
+        </Border>
+
+        <!-- Buttons -->
+        <Border Grid.Row="1" Background="#F8F9FA" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Padding="20,15">
+            <StackPanel x:Name="buttonPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- Buttons will be added programmatically -->
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+

@@ -171,24 +171,25 @@
                 <Border.Effect>
                     <DropShadowEffect Color="#CCCCCC" Direction="270" ShadowDepth="2" BlurRadius="8" Opacity="0.2"/>
                 </Border.Effect>
-                <StackPanel>
-                    <TextBlock Text="Appointment Information" FontSize="18" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Appointment Information" FontSize="18" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,20"/>
 
-                    <!-- Appointment ID -->
-                    <TextBlock Text="Appointment ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtAppointmentID" IsReadOnly="True" Background="#ECF0F1" Margin="0,0,0,10"/>
+                        <!-- Appointment ID -->
+                        <TextBlock Text="Appointment ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtAppointmentID" IsReadOnly="True" Background="#ECF0F1" Margin="0,0,0,10"/>
 
-                    <!-- Patient ID -->
-                    <TextBlock Text="Patient ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtPatientID" Margin="0,0,0,10"/>
+                        <!-- Patient ID -->
+                        <TextBlock Text="Patient ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtPatientID" Margin="0,0,0,10"/>
 
-                    <!-- Doctor ID -->
-                    <TextBlock Text="Doctor ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtDoctorID" Margin="0,0,0,10"/>
+                        <!-- Doctor ID -->
+                        <TextBlock Text="Doctor ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtDoctorID" Margin="0,0,0,10"/>
 
-                    <!-- Appointment Date -->
-                    <TextBlock Text="Appointment Date:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <DatePicker x:Name="dpAppointmentDate" Margin="0,0,0,10" Language="en-US">
+                        <!-- Appointment Date -->
+                        <TextBlock Text="Appointment Date:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <DatePicker x:Name="dpAppointmentDate" Margin="0,0,0,10" Language="en-US">
                         <DatePicker.Resources>
                             <Style TargetType="DatePickerTextBox">
                                 <Setter Property="Template">
@@ -223,38 +224,39 @@
                                 </Setter>
                             </Style>
                         </DatePicker.Resources>
-                    </DatePicker>
+                        </DatePicker>
 
-                    <!-- Appointment Time -->
-                    <TextBlock Text="Appointment Time (HH:mm):" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <TextBox x:Name="txtAppointmentTime" Margin="0,0,0,10" Text="09:00"/>
+                        <!-- Appointment Time -->
+                        <TextBlock Text="Appointment Time (HH:mm):" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <TextBox x:Name="txtAppointmentTime" Margin="0,0,0,10" Text="09:00"/>
 
-                    <!-- Status -->
-                    <TextBlock Text="Status:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <ComboBox x:Name="cmbStatus" Margin="0,0,0,20">
-                        <ComboBoxItem Content="Scheduled"/>
-                        <ComboBoxItem Content="Completed"/>
-                        <ComboBoxItem Content="Cancelled"/>
-                        <ComboBoxItem Content="No-Show"/>
-                    </ComboBox>
+                        <!-- Status -->
+                        <TextBlock Text="Status:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <ComboBox x:Name="cmbStatus" Margin="0,0,0,20">
+                            <ComboBoxItem Content="Scheduled"/>
+                            <ComboBoxItem Content="Completed"/>
+                            <ComboBoxItem Content="Cancelled"/>
+                            <ComboBoxItem Content="No-Show"/>
+                        </ComboBox>
 
-                    <!-- Action Buttons -->
-                    <Button Content="Add Appointment" Style="{StaticResource ButtonStyle}" Click="BtnAdd_Click" Margin="0,5"/>
-                    <Button Content="Update Appointment" Style="{StaticResource ButtonStyle}" Click="BtnUpdate_Click" Margin="0,5"/>
-                    <Button Content="Delete Appointment" Style="{StaticResource DeleteButtonStyle}" Click="BtnDelete_Click" Margin="0,5"/>
-                    <Button Content="Clear Form" Click="BtnClear_Click" Margin="0,5">
-                        <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-                                <Setter Property="Background" Value="#95A5A6"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#7F8C8D"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </StackPanel>
+                        <!-- Action Buttons -->
+                        <Button Content="Add Appointment" Style="{StaticResource ButtonStyle}" Click="BtnAdd_Click" Margin="0,5"/>
+                        <Button Content="Update Appointment" Style="{StaticResource ButtonStyle}" Click="BtnUpdate_Click" Margin="0,5"/>
+                        <Button Content="Delete Appointment" Style="{StaticResource DeleteButtonStyle}" Click="BtnDelete_Click" Margin="0,5"/>
+                        <Button Content="Clear Form" Click="BtnClear_Click" Margin="0,5">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                                    <Setter Property="Background" Value="#95A5A6"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#7F8C8D"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Grid>

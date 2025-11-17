@@ -119,22 +119,38 @@ namespace Hospital_MamSys_GUI
 
         private void BtnDepartmentManagement_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Department Management feature is under development...", "Information", 
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                DepartmentManagementWindow window = new DepartmentManagementWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Failed to open Department Management window: {ex.Message}", "Error",
+                    CustomMessageBox.MessageBoxButton.OK, CustomMessageBox.MessageBoxIcon.Error);
+            }
         }
 
         private void BtnUserManagement_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("User Management feature is under development...", "Information", 
-                MessageBoxButton.OK, MessageBoxImage.Information);
+            try
+            {
+                UserManagementWindow window = new UserManagementWindow();
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show($"Failed to open User Management window: {ex.Message}", "Error",
+                    CustomMessageBox.MessageBoxButton.OK, CustomMessageBox.MessageBoxIcon.Error);
+            }
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to logout?", "Confirm", 
-                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = CustomMessageBox.Show("Are you sure you want to logout?", "Confirm", 
+                CustomMessageBox.MessageBoxButton.YesNo, CustomMessageBox.MessageBoxIcon.Question);
             
-            if (result == MessageBoxResult.Yes)
+            if (result == CustomMessageBox.MessageBoxResult.Yes)
             {
                 _timer?.Stop();
                 LoginWindow loginWindow = new LoginWindow();
