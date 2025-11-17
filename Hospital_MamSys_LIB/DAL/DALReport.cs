@@ -1,5 +1,4 @@
-﻿using Hospital_ManSys_LIB.Model;
-using Hospital_ManSys_LIB.Models;
+﻿using Hospital_MamSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MamSys_LIB.DAL
 {
-    internal class DALReport : DALBase
+    public class DALReport : DALBase
     {
         // CREATE 
         public void AddReport(Report r)

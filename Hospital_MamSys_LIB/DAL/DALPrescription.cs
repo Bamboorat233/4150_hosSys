@@ -1,4 +1,4 @@
-﻿using Hospital_ManSys_LIB.Model;
+﻿using Hospital_MamSys_LIB.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hospital_MamSys_LIB.DAL
 {
-    internal class DALPrescription : DALBase
+    public class DALPrescription : DALBase
     {
         // CREATE
         public void AddPrescription(Prescription p)

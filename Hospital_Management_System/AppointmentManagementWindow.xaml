@@ -1,0 +1,194 @@
+<Window x:Class="Hospital_MamSys_GUI.AppointmentManagementWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Appointment Management" Height="650" Width="1100"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357ABD"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+            <Setter Property="Background" Value="#E74C3C"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#C0392B"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#ECF0F1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Border Grid.Row="0" Background="White">
+            <Border.Effect>
+                <DropShadowEffect Color="#CCCCCC" Direction="270" ShadowDepth="1" BlurRadius="5" Opacity="0.2"/>
+            </Border.Effect>
+            <TextBlock Text="Appointment Management" 
+                      FontSize="24" 
+                      FontWeight="SemiBold" 
+                      Foreground="#2C3E50"
+                      VerticalAlignment="Center"
+                      Margin="30,0"/>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left - Appointment List -->
+            <Border Grid.Column="0" Background="White" CornerRadius="8" Padding="15">
+                <Border.Effect>
+                    <DropShadowEffect Color="#CCCCCC" Direction="270" ShadowDepth="2" BlurRadius="8" Opacity="0.2"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Search Bar -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                        <TextBlock Text="Search:" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="13"/>
+                        <TextBox x:Name="txtSearch" Width="200" TextChanged="TxtSearch_TextChanged"/>
+                        <Button Content="Refresh List" Style="{StaticResource ButtonStyle}" Click="BtnRefresh_Click" Margin="10,5,5,5"/>
+                    </StackPanel>
+
+                    <!-- Appointment List -->
+                    <DataGrid x:Name="dgAppointments" 
+                             Grid.Row="1"
+                             AutoGenerateColumns="False"
+                             IsReadOnly="True"
+                             SelectionMode="Single"
+                             SelectionChanged="DgAppointments_SelectionChanged"
+                             CanUserAddRows="False"
+                             GridLinesVisibility="Horizontal"
+                             HeadersVisibility="Column"
+                             AlternatingRowBackground="#F8F9FA">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Appt ID" Binding="{Binding AppointmentID}" Width="70"/>
+                            <DataGridTextColumn Header="Patient ID" Binding="{Binding PatientID}" Width="80"/>
+                            <DataGridTextColumn Header="Doctor ID" Binding="{Binding DoctorID}" Width="80"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding AppointmentDate, StringFormat=yyyy-MM-dd}" Width="110"/>
+                            <DataGridTextColumn Header="Time" Binding="{Binding AppointmentTime}" Width="100"/>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- Statistics -->
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,10,0,0">
+                        <TextBlock x:Name="txtCount" Text="Total 0 records" FontSize="12" Foreground="#7F8C8D"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Right - Operation Panel -->
+            <Border Grid.Column="2" Background="White" CornerRadius="8" Padding="20">
+                <Border.Effect>
+                    <DropShadowEffect Color="#CCCCCC" Direction="270" ShadowDepth="2" BlurRadius="8" Opacity="0.2"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Appointment Information" FontSize="18" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+                    <!-- Appointment ID -->
+                    <TextBlock Text="Appointment ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtAppointmentID" IsReadOnly="True" Background="#ECF0F1" Margin="0,0,0,10"/>
+
+                    <!-- Patient ID -->
+                    <TextBlock Text="Patient ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtPatientID" Margin="0,0,0,10"/>
+
+                    <!-- Doctor ID -->
+                    <TextBlock Text="Doctor ID:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtDoctorID" Margin="0,0,0,10"/>
+
+                    <!-- Appointment Date -->
+                    <TextBlock Text="Appointment Date:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <DatePicker x:Name="dpAppointmentDate" Margin="0,0,0,10"/>
+
+                    <!-- Appointment Time -->
+                    <TextBlock Text="Appointment Time (HH:mm):" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <TextBox x:Name="txtAppointmentTime" Margin="0,0,0,10" Text="09:00"/>
+
+                    <!-- Status -->
+                    <TextBlock Text="Status:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                    <ComboBox x:Name="cmbStatus" Margin="0,0,0,20">
+                        <ComboBoxItem Content="Scheduled"/>
+                        <ComboBoxItem Content="Completed"/>
+                        <ComboBoxItem Content="Cancelled"/>
+                        <ComboBoxItem Content="No-Show"/>
+                    </ComboBox>
+
+                    <!-- Action Buttons -->
+                    <Button Content="Add Appointment" Style="{StaticResource ButtonStyle}" Click="BtnAdd_Click" Margin="0,5"/>
+                    <Button Content="Update Appointment" Style="{StaticResource ButtonStyle}" Click="BtnUpdate_Click" Margin="0,5"/>
+                    <Button Content="Delete Appointment" Style="{StaticResource DeleteButtonStyle}" Click="BtnDelete_Click" Margin="0,5"/>
+                    <Button Content="Clear Form" Click="BtnClear_Click" Margin="0,5">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                                <Setter Property="Background" Value="#95A5A6"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#7F8C8D"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
+

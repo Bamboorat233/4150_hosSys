@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hospital_ManSys_LIB.Model
+namespace Hospital_MamSys_LIB.Model
 {
-    internal class Prescription
+    public class Prescription
     {
         public int RecordID { get; set; }
         public int MedID { get; set; }

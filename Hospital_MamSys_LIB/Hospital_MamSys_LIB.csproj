@@ -53,6 +53,7 @@
     <Compile Include="DAL\DALPayment.cs" />
     <Compile Include="DAL\DALPrescription.cs" />
     <Compile Include="DAL\DALReport.cs" />
+    <Compile Include="DAL\DALUser.cs" />
     <Compile Include="Model\Appointment.cs" />
     <Compile Include="Model\Department.cs" />
     <Compile Include="Model\Doctor.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Model\Prescription.cs" />
     <Compile Include="Model\Report.cs" />
     <Compile Include="Model\Staff.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
