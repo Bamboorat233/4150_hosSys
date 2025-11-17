@@ -21,7 +21,7 @@ namespace Hospital_MamSys_GUI
         private void InitializeUI()
         {
             // Set user information
-            txtWelcome.Text = $"Welcome, {_currentUser.FullName}";
+            txtWelcome.Text = $"Welcome, {_currentUser.Username}";
             txtUserRole.Text = $"Role: {GetRoleDisplayName(_currentUser.Role)}";
             txtCurrentUser.Text = $"Current User: {_currentUser.Username} ({GetRoleDisplayName(_currentUser.Role)})";
 

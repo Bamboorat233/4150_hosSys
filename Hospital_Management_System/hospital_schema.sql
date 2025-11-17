@@ -145,3 +145,21 @@ CREATE TABLE dbo.Payment
         ON DELETE CASCADE
 );
 CREATE INDEX IX_Payment_Invoice ON dbo.Payment(InvoiceID);
+
+CREATE TABLE dbo.[User]
+(
+    UserID      INT IDENTITY(1,1) CONSTRAINT PK_User PRIMARY KEY,
+    Username    NVARCHAR(50)  NOT NULL,
+    [Password]  NVARCHAR(100) NOT NULL,
+    Role        NVARCHAR(20)  NOT NULL
+        CONSTRAINT CK_User_Role 
+        CHECK (Role IN (N'Admin', N'Doctor', N'Nurse', N'Receptionist')),
+    Email       NVARCHAR(100) NULL,
+    CreatedDate DATETIME2(0)  NOT NULL CONSTRAINT DF_User_CreatedDate DEFAULT (GETDATE()),
+    IsActive    BIT NOT NULL CONSTRAINT DF_User_IsActive DEFAULT (1),
+    CONSTRAINT UQ_User_Username UNIQUE (Username)
+);
+
+-- 创建索引
+CREATE INDEX IX_User_Username ON dbo.[User](Username);
+CREATE INDEX IX_User_Role ON dbo.[User](Role);
