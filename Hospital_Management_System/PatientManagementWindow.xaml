@@ -51,6 +51,39 @@
             <Setter Property="FontSize" Value="13"/>
             <Setter Property="Height" Value="30"/>
         </Style>
+        
+        <Style x:Key="DatePickerTextBoxStyle" TargetType="DatePickerTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <TextBox x:Name="PART_TextBox" 
+                                 Text="{Binding Path=SelectedDate, StringFormat='yyyy-MM-dd', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                                 IsReadOnly="True">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" Value="{x:Null}">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="None" AlignmentX="Left">
+                                                        <VisualBrush.Visual>
+                                                            <TextBlock Text="Select Date" 
+                                                                      FontStyle="Italic" 
+                                                                      Foreground="Gray" 
+                                                                      Margin="5,0,0,0"/>
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
         <Style TargetType="ComboBox">
             <Setter Property="Padding" Value="5"/>
@@ -150,7 +183,42 @@
 
                     <!-- Date of Birth -->
                     <TextBlock Text="Date of Birth:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
-                    <DatePicker x:Name="dpDOB" Margin="0,0,0,10"/>
+                    <DatePicker x:Name="dpDOB" Margin="0,0,0,10" Language="en-US">
+                        <DatePicker.Resources>
+                            <Style TargetType="DatePickerTextBox">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <TextBox x:Name="PART_TextBox" 
+                                                     Text="{Binding Path=SelectedDate, StringFormat='yyyy-MM-dd', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" 
+                                                     IsReadOnly="True">
+                                                <TextBox.Style>
+                                                    <Style TargetType="TextBox">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" Value="{x:Null}">
+                                                                <Setter Property="Background">
+                                                                    <Setter.Value>
+                                                                        <VisualBrush Stretch="None" AlignmentX="Left">
+                                                                            <VisualBrush.Visual>
+                                                                                <TextBlock Text="Select Date" 
+                                                                                          FontStyle="Italic" 
+                                                                                          Foreground="Gray" 
+                                                                                          Margin="5,0,0,0"/>
+                                                                            </VisualBrush.Visual>
+                                                                        </VisualBrush>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBox.Style>
+                                            </TextBox>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DatePicker.Resources>
+                    </DatePicker>
 
                     <!-- Gender -->
                     <TextBlock Text="Gender:" FontSize="12" Foreground="#7F8C8D" Margin="0,0,0,5"/>
